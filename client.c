@@ -6,20 +6,33 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/05 13:21:17 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:58:05 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
+void    send_signal(int pid, unsigned char bit)
+{       
+
+        if (bit == '0')
+        {
+                kill(pid, SIGUSR1);
+        }
+        else if (bit == '1')
+        {
+                kill(pid, SIGUSR2);
+        }
+}
+
 int	main(int ac, char **av)
 {
 	int     pid;
         int     status;
-        // int     bit;
         int     i;
         int     j;
+        unsigned char     bit;
 
         if (ac != 3)
         {
@@ -34,12 +47,16 @@ int	main(int ac, char **av)
                 printf("Success\n");
                 i = 0;
                 j = 8;
-                while (av[2][i])
+                while (av[2][i] != '\0')
                 {
                         while (j--)
                         {
-                                printf("%c", ((av[2][i] >> j & 1) + '0'));
+                                bit = ((av[2][i] >> j & 1) + '0');
+                                printf("%c", bit);
+                                kill(pid, 10);
                         }
+                        j = 8;
+                        bit = 0;
                         i++;
                 }
                 exit(0);
