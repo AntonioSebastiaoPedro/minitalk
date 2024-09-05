@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/05 16:58:05 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:52:55 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int ac, char **av)
                 exit(1);
         }
 	pid = atoi(av[1]);
-	printf("PID SERVER: %d \n", pid);
         status = kill(pid, 23);
         if (!status)
         {
@@ -52,8 +51,8 @@ int	main(int ac, char **av)
                         while (j--)
                         {
                                 bit = ((av[2][i] >> j & 1) + '0');
-                                printf("%c", bit);
-                                kill(pid, 10);
+                                send_signal(pid, bit);
+                                usleep(350);
                         }
                         j = 8;
                         bit = 0;
