@@ -6,64 +6,60 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/05 18:52:55 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 07:03:28 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void    send_signal(int pid, unsigned char bit)
-{       
+int		signal_received;
 
-        if (bit == '0')
+void	wait_signal(int signal)
+{
+	(void)signal;
+	signal_received = 1;
+}
+
+void	send_signal(long pid, unsigned char bit)
+{
+	if (bit == '0')
+		kill(pid, SIGUSR1);
+	else if (bit == '1')
+		kill(pid, SIGUSR2);
+	while (signal_received == 0)
+		;
+	signal_received = 0;
+}
+
+void    send_bits(int count, int ch, long pid, void (f)(long pid, unsigned char bit))
+{
+        unsigned char bit;
+        
+        while (count--)
         {
-                kill(pid, SIGUSR1);
-        }
-        else if (bit == '1')
-        {
-                kill(pid, SIGUSR2);
+                bit = ((ch >> count & 1) + '0');
+                f(pid, bit);
         }
 }
 
 int	main(int ac, char **av)
 {
-	int     pid;
-        int     status;
-        int     i;
-        int     j;
-        unsigned char     bit;
+	long pid;
+	int i;
+	int j;
 
-        if (ac != 3)
-        {
-                printf("Usage: ./client <pid server> <string to send>");
-                exit(1);
-        }
-	pid = atoi(av[1]);
-        status = kill(pid, 23);
-        if (!status)
-        {
-                printf("Success\n");
-                i = 0;
-                j = 8;
-                while (av[2][i] != '\0')
-                {
-                        while (j--)
-                        {
-                                bit = ((av[2][i] >> j & 1) + '0');
-                                send_signal(pid, bit);
-                                usleep(350);
-                        }
-                        j = 8;
-                        bit = 0;
-                        i++;
-                }
-                exit(0);
-        }
-        else
-        {
-                printf("Error");
-                exit(1);
-        }
+	validate_arguments(ac, av);
+	pid = ft_atol(av[1]);
+	i = 0;
+	j = 8;
+	signal(SIGUSR1, wait_signal);
+	while (av[2][i] != '\0')
+	{
+		send_bits(j, av[2][i], pid, send_signal);
+		j = 8;
+		i++;
+	}
+        send_bits(j, av[2][i], pid, send_signal);
+	exit(0);
 	return (0);
 }

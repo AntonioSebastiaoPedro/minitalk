@@ -6,43 +6,62 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/05 18:51:27 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 06:51:46 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-void	hand_siguser(int sig)
+long     client_pid;
+
+void	hand_siguser(int sig, siginfo_t *info, void *context)
 {
-        static int     value;
-        static int     count;
+	static char	value;
+	static int	count;
         
-        value *= 2;
-	if (sig == SIGUSR2)
-                value += 1;
-        ++count;
-	if (count == 8)
+        if (client_pid <= 0)
+                client_pid = info->si_pid;
+        if (client_pid == info->si_pid)
         {
-                write(1, &value, 1);
-                count = 0;
-                value = 0;
-        }        
+                (void)context;
+                value *= 2;
+                if (sig == SIGUSR2)
+                        value++;
+                ++count;
+                if (count == 8)
+                {
+                        write(1, &value, 1);
+                        count = 0;
+                        if (value == '\0')
+                        {
+                                kill(client_pid, SIGUSR1);
+                                client_pid = -123;
+                        }
+                        value = 0;
+                }
+                kill(client_pid, SIGUSR1);
+        }
+        else
+                kill(info->si_pid, 9);
 }
 
 int	main(void)
 {
-	int pid;
+	struct sigaction action;
+	long pid;
 
 	pid = getpid();
-	printf("PID: %d \n", pid);
+	ft_putstr_fd("PID: ", 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putstr_fd("\n", 1);
+	action.sa_sigaction = hand_siguser;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
 
-        signal(SIGUSR1, hand_siguser);
-        signal(SIGUSR2, hand_siguser);
-        
+	sigaction(SIGUSR1, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL);
+
 	while (1)
-	{
-                pause();
-	}
+		pause();
 	return (0);
 }
