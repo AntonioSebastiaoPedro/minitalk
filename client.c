@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 07:03:28 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 07:20:23 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ void	send_signal(long pid, unsigned char bit)
 	signal_received = 0;
 }
 
-void    send_bits(int count, int ch, long pid, void (f)(long pid, unsigned char bit))
+void	send_bits(int count, int ch, long pid, void(f)(long pid,
+			unsigned char bit))
 {
-        unsigned char bit;
-        
-        while (count--)
-        {
-                bit = ((ch >> count & 1) + '0');
-                f(pid, bit);
-        }
+	unsigned char	bit;
+
+	while (count--)
+	{
+		bit = ((ch >> count & 1) + '0');
+		f(pid, bit);
+	}
 }
 
 int	main(int ac, char **av)
@@ -59,7 +60,7 @@ int	main(int ac, char **av)
 		j = 8;
 		i++;
 	}
-        send_bits(j, av[2][i], pid, send_signal);
+	send_bits(j, av[2][i], pid, send_signal);
 	exit(0);
 	return (0);
 }
