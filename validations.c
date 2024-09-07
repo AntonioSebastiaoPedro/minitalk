@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:11:00 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 01:21:40 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 08:03:17 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	validate_arguments(int argc, char **argv)
 	if (check_pid(ft_atol(argv[1])) != 0)
 		ft_puterror("This PID does not correspond to any valid process\n", 2);
 	if (ft_isempty(argv[2]))
-		ft_puterror("Invalid Message\n", 2);
+		ft_puterror("Message cannot be empty\n", 2);
 }
