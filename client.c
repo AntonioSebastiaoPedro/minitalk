@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 07:20:23 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:16:33 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int		signal_received;
 
 void	wait_signal(int signal)
 {
-	(void)signal;
-	signal_received = 1;
+	if (signal == 10)
+		signal_received = 1;
+	else
+		signal_received = 0;
 }
 
 void	send_signal(long pid, unsigned char bit)

@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 07:52:08 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:11:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 	if (client_pid == info->si_pid)
 	{
 		(void)context;
-		value *= 2;
+		value = value << 1;
 		if (sig == SIGUSR2)
 			value++;
 		++count;
@@ -49,7 +49,7 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 		kill(client_pid, SIGUSR1);
 	}
 	else
-		kill(info->si_pid, 9);
+		kill(info->si_pid, SIGUSR2);
 }
 
 int	main(void)
