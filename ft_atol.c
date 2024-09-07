@@ -16,7 +16,7 @@ long	ft_atol(const char *str)
 {
 	int		i;
 	int		signal;
-        long	num;
+	long	num;
 
 	signal = 1;
 	num = 0;
