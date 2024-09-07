@@ -6,14 +6,14 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 00:40:39 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 00:57:11 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:20:55 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_puterror(char *msg, int fd)
+void	ft_puterror(char *msg, int fd)
 {
-        ft_putstr_fd(msg, fd);
-        exit(1);
+	ft_putstr_fd(msg, fd);
+	exit(1);
 }
