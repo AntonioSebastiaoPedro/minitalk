@@ -57,8 +57,8 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction action;
-	long pid;
+	struct sigaction	action;
+	long				pid;
 
 	pid = getpid();
 	ft_putstr_fd("PID: ", 1);
