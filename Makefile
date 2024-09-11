@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 14:00:18 by ansebast          #+#    #+#              #
-#    Updated: 2024/09/07 11:06:29 by ansebast         ###   ########.fr        #
+#    Updated: 2024/09/11 20:54:02 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,13 @@ SRC = ft_atol.c ft_isint.c ft_putnbr_fd.c validations.c \
 	ft_isempty.c ft_puterror.c ft_strtol.c
 
 OBJS = $(SRC:.c=.o)
+CLIENT_BONUS = client_bonus.c
 CLIENT = client.c
 SERVER = server.c
+SERVER_BONUS = server_bonus.c
+CLIENT_BONUS_OBJS = $(CLIENT_BONUS:.c=.o)
 CLIENT_OBJS = $(CLIENT:.c=.o)
+SERVER_BONUS_OBJS = $(SERVER_BONUS:.c=.o)
 SERVER_OBJS = $(SERVER:.c=.o)
 
 GREEN = \033[0;32m
@@ -38,12 +42,26 @@ client: $(OBJS) $(CLIENT_OBJS)
 	cc $(CFLAGS) $(OBJS) $(CLIENT_OBJS) -o client 
 	@echo "$(GREEN)Client executable $(NAME) created successfully!$(RESET)"
 
+bonus: client_bonus server_bonus
+
+server_bonus: $(OBJS) $(SERVER_BONUS_OBJS)
+	@echo "$(YELLOW)Linking the objects...$(RESET)"
+	cc $(CFLAGS) $(OBJS) $(SERVER_BONUS_OBJS) -o server_bonus 
+	@echo "$(GREEN)Bonus Server executable $(NAME) created successfully!$(RESET)"
+
+client_bonus: $(OBJS) $(CLIENT_BONUS_OBJS)
+	@echo "$(YELLOW)Linking the objects...$(RESET)"
+	cc $(CFLAGS) $(OBJS) $(CLIENT_OBJS) -o client_bonus 
+	@echo "$(GREEN)Bonus Client executable $(NAME) created successfully!$(RESET)"
+
 clean:
 	@echo "$(RED)Removing all object files...$(RESET)"
-	rm -f $(SERVER_OBJS) $(CLIENT_OBJS) $(OBJS)
+	rm -f $(SERVER_OBJS) $(CLIENT_OBJS) $(SERVER_BONUS_OBJS) $(CLIENT_BONUS_OBJS) $(OBJS)
 
 fclean: clean
 	@echo "$(RED)Removing the server and client executable ...$(RESET)"
-	rm -f server client
+	rm -f server client client_bonus server_bonus
 
 re: fclean all
+
+rebonus: fclean bonus
