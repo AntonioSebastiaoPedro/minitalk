@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:11:00 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/11 23:16:54 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:21:39 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_pid(long pid)
 	return (kill(pid, 0));
 }
 
-void	validate_arguments(int argc, char **argv)
+void	validate_client_args(int argc, char **argv)
 {
         int     pid;
         
