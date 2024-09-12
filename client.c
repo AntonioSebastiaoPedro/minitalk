@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 10:29:58 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:28:41 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
 	int		i;
 	int		j;
 
-	validate_arguments(ac, av);
+	validate_client_args(ac, av);
 	pid = ft_atol(av[1]);
 	i = 0;
 	j = 8;
