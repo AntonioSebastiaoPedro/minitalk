@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:11:00 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/11 23:21:39 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:28:12 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ void	validate_client_args(int argc, char **argv)
 		ft_puterror("This PID does not correspond to any valid process\n", 2);
 	if (ft_isempty(argv[2]))
 		ft_puterror("Message cannot be empty\n", 2);
+}
+
+void    validate_server_args(int argc, char **argv)
+{
+        (void)argv;
+        if (argc > 1)
+                ft_puterror("Correct usage: ./server\n", 2);
 }

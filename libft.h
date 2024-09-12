@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 14:20:27 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 01:07:58 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:24:18 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void		ft_putnbr_fd(long n, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 void		ft_puterror(char *msg, int fd);
-void		validate_arguments(int argc, char **argv);
+void		validate_client_args(int argc, char **argv);
+void		validate_server_args(int argc, char **argv);
 int			ft_isdigit(int ch);
 int			ft_isint(char *str);
 int			ft_isempty(char *str);

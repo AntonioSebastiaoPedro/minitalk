@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/07 10:48:21 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:30:06 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 		kill(info->si_pid, SIGUSR2);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	struct sigaction	action;
 	long				pid;
 
+        validate_server_args(ac, av);
 	pid = getpid();
 	ft_putstr_fd("PID: ", 1);
 	ft_putnbr_fd(pid, 1);
@@ -71,6 +72,6 @@ int	main(void)
 	sigaction(SIGUSR2, &action, NULL);
 	signal(SIGINT, hand_quit);
 	while (1)
-		pause();
+		;
 	return (0);
 }
