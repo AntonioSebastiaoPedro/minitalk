@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/11 23:30:06 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/12 08:33:48 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	send_signal(int sig, long *client_pid)
 		count = 0;
 		if (value == '\0')
 		{
-			kill(*client_pid, SIGUSR1);
+			kill(*client_pid, SIGUSR2);
 			*client_pid = -123;
 		}
 		value = 0;
