@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 14:00:18 by ansebast          #+#    #+#              #
-#    Updated: 2024/09/11 20:54:02 by ansebast         ###   ########.fr        #
+#    Updated: 2024/09/11 22:54:00 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,4 +64,4 @@ fclean: clean
 
 re: fclean all
 
-rebonus: fclean bonus
+rebonus: re bonus
