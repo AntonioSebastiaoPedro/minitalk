@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 14:00:18 by ansebast          #+#    #+#              #
-#    Updated: 2024/09/11 22:54:00 by ansebast         ###   ########.fr        #
+#    Updated: 2024/09/12 21:36:05 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ server_bonus: $(OBJS) $(SERVER_BONUS_OBJS)
 
 client_bonus: $(OBJS) $(CLIENT_BONUS_OBJS)
 	@echo "$(YELLOW)Linking the objects...$(RESET)"
-	cc $(CFLAGS) $(OBJS) $(CLIENT_OBJS) -o client_bonus 
+	cc $(CFLAGS) $(OBJS) $(CLIENT_BONUS_OBJS) -o client_bonus 
 	@echo "$(GREEN)Bonus Client executable $(NAME) created successfully!$(RESET)"
 
 clean:
