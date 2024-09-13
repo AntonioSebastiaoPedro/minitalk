@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:43:31 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:50:35 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	send_signal(int sig, long *client_pid)
 	if (sig == SIGUSR2)
 		value++;
 	++count;
-        if (*client_pid == -123)
-        {
-                value = 0;
-                count = 0;
-        }
+	if (*client_pid == -123)
+	{
+		value = 0;
+		count = 0;
+	}
 	if (count == 8)
 	{
 		write(1, &value, 1);
@@ -54,14 +54,14 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 	(void)context;
 	if (client_pid <= 0)
 		client_pid = info->si_pid;
-        if (client_pid != info->si_pid)
-        {
-                kill(info->si_pid, SIGUSR2);
-                kill(client_pid, SIGUSR2);
-                client_pid = -123;
-                sleep(1);
-        }
-        send_signal(sig, &client_pid);
+	if (client_pid != info->si_pid)
+	{
+		kill(info->si_pid, SIGUSR2);
+		kill(client_pid, SIGUSR2);
+		client_pid = -123;
+		sleep(1);
+	}
+	send_signal(sig, &client_pid);
 }
 
 int	main(int ac, char **av)
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	struct sigaction	action;
 	long				pid;
 
-        validate_server_args(ac, av);
+	validate_server_args(ac, av);
 	pid = getpid();
 	ft_putstr_fd("PID: ", 1);
 	ft_putnbr_fd(pid, 1);

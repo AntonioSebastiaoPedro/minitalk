@@ -6,20 +6,21 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:33:00 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:52:39 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		g_signal_received;
+int			g_signal_received;
 
 void	wait_signal(int signal)
 {
-        if (signal == 10)
-	        g_signal_received = 1;
-        if (signal == 12)
-                ft_puterror("There is another process sending message. Wait 1 second!", 2);
+	if (signal == 10)
+		g_signal_received = 1;
+	if (signal == 12)
+		ft_puterror("There is another process sending message. Wait 1 second!",
+			2);
 }
 
 static void	send_signal(long pid, unsigned char bit)
@@ -34,7 +35,7 @@ static void	send_signal(long pid, unsigned char bit)
 }
 
 void	send_bits(int count, int ch, long pid, void (f)(long pid,
-			unsigned char bit))
+unsigned char bit))
 {
 	unsigned char	bit;
 
@@ -56,14 +57,14 @@ int	main(int ac, char **av)
 	i = 0;
 	j = 8;
 	signal(SIGUSR1, wait_signal);
-        signal(SIGUSR2, wait_signal);
+	signal(SIGUSR2, wait_signal);
 	while (av[2][i] != '\0')
 	{
 		send_bits(j, av[2][i], pid, send_signal);
 		j = 8;
 		i++;
 	}
-        send_bits(j, '\n', pid, send_signal);
+	send_bits(j, '\n', pid, send_signal);
 	send_bits(j, av[2][i], pid, send_signal);
 	exit(0);
 	return (0);
