@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/12 22:09:05 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:33:00 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	wait_signal(int signal)
 {
         if (signal == 10)
 	        g_signal_received = 1;
-        else if (signal == 12)
-                ft_puterror("There is already a process sending message", 2);
+        if (signal == 12)
+                ft_puterror("There is another process sending message. Wait 1 second!", 2);
 }
 
 static void	send_signal(long pid, unsigned char bit)
