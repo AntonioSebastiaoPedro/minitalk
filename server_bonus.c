@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:50:28 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:50:35 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	send_signal(int sig, long *client_pid)
 		count = 0;
 		if (value == '\0')
 		{
-			kill(*client_pid, SIGUSR1);
+			kill(*client_pid, SIGUSR2);
 			*client_pid = -123;
 		}
 		value = 0;
@@ -55,7 +55,12 @@ void	hand_siguser(int sig, siginfo_t *info, void *context)
 	if (client_pid <= 0)
 		client_pid = info->si_pid;
 	if (client_pid != info->si_pid)
+	{
+		kill(info->si_pid, SIGUSR2);
+		kill(client_pid, SIGUSR2);
 		client_pid = -123;
+		sleep(1);
+	}
 	send_signal(sig, &client_pid);
 }
 

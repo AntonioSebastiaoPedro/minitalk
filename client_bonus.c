@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:52:39 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:53:07 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int			g_signal_received;
 
+void	message_received(void)
+{
+	ft_putstr_fd("Message Sent Successfuly!\n", 1);
+	exit(0);
+}
+
 void	wait_signal(int signal)
 {
 	if (signal == 10)
 		g_signal_received = 1;
-	if (signal == 12)
-		ft_puterror("There is another process sending message. Wait 1 second!",
-			2);
+	else if (signal == 12)
+		message_received();
 }
 
 static void	send_signal(long pid, unsigned char bit)
@@ -35,7 +40,7 @@ static void	send_signal(long pid, unsigned char bit)
 }
 
 void	send_bits(int count, int ch, long pid, void (f)(long pid,
-unsigned char bit))
+			unsigned char bit))
 {
 	unsigned char	bit;
 
@@ -66,6 +71,5 @@ int	main(int ac, char **av)
 	}
 	send_bits(j, '\n', pid, send_signal);
 	send_bits(j, av[2][i], pid, send_signal);
-	exit(0);
 	return (0);
 }
