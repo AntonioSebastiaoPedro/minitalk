@@ -6,7 +6,8 @@
 The **Minitalk** project is part of the 42 curriculum and focuses on Inter-Process Communication (IPC) using Unix signals. The project involves creating a client-server system where the client sends a string message to the server, and the server receives and prints it. Communication is achieved using **signals** (specifically `SIGUSR1` and `SIGUSR2`), and the message is transmitted one bit at a time.
 
 ## **Key Concepts**
-- **Signals** (`SIGUSR1`, `SIGUSR2`)
+- **Unix Logic**
+- **Unix Signals** (`SIGUSR1`, `SIGUSR2`)
 - **Inter-Process Communication** (IPC)
 - **Client-Server Architecture**
 - **Bitwise operations** (bit shifting, bit manipulation)
