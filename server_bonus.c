@@ -6,11 +6,11 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:50:35 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:14:56 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk_bonus.h"
 
 void	hand_quit(int signal)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validations.c                                      :+:      :+:    :+:   */
+/*   validations_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:11:00 by ansebast          #+#    #+#             */
-/*   Updated: 2024/11/21 23:15:35 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:15:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	check_pid(long pid)
 {

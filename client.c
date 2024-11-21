@@ -6,11 +6,11 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:52:39 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:18:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
 int			g_signal_received;
 
@@ -55,13 +55,13 @@ int	main(int ac, char **av)
 	validate_client_args(ac, av);
 	pid = ft_atol(av[1]);
 	i = 0;
-	j = 8;
+	j = 7;
 	signal(SIGUSR1, wait_signal);
 	signal(SIGUSR2, wait_signal);
 	while (av[2][i] != '\0')
 	{
 		send_bits(j, av[2][i], pid, send_signal);
-		j = 8;
+		j = 7;
 		i++;
 	}
 	send_bits(j, '\n', pid, send_signal);

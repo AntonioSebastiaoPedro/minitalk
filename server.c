@@ -6,11 +6,11 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:50:28 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:16:36 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
 void	hand_quit(int signal)
 {
@@ -33,7 +33,7 @@ static void	send_signal(int sig, long *client_pid)
 		value = 0;
 		count = 0;
 	}
-	if (count == 8)
+	if (count == 7)
 	{
 		write(1, &value, 1);
 		count = 0;

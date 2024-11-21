@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 14:20:27 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/11 23:24:18 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:14:32 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
 # include <signal.h>
 # include <stdlib.h>

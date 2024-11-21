@@ -6,11 +6,11 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:59:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/09/13 01:53:07 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:16:13 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk_bonus.h"
 
 int			g_signal_received;
 
